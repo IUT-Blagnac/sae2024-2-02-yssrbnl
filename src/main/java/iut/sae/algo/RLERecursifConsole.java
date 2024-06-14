@@ -27,7 +27,7 @@ public class RLERecursifConsole{
         try{
             System.out.println("Entrée : "+in);
             System.out.println("Itérations : "+iterations);
-            System.out.println("Sortie : "+ Algo.RLE(in, iterations));
+            System.out.println("Sortie : "+ AlgoEfficaceBasCarbonne.RLE(in, iterations));
         }
         catch(AlgoException e){
             System.err.println("Erreur lors de la transformation");

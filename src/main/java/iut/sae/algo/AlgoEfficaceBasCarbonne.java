@@ -14,7 +14,7 @@ package iut.sae.algo;
  *
  * @version 1.0
  */
-public class Algo {
+public class AlgoEfficaceBasCarbonne {
 
     /**
      * Comprime une chaîne en utilisant l'algorithme Run-Length Encoding (RLE).
@@ -67,6 +67,8 @@ public class Algo {
         if (iteration < 0) {
             throw new IllegalArgumentException("Le nombre d'itérations doit être non négatif.");
         }
+        //Verification de l'argument
+        if (in == null || in.isEmpty()) return "";
 
         String result = in;
         // Effectue l'algorithme RLE plusieurs fois
@@ -89,6 +91,9 @@ public class Algo {
         if (length % 2 != 0) {
             throw new IllegalArgumentException("La chaîne d'entrée doit avoir une longueur paire.");
         }
+
+        //Verification de l'argument
+        if (in == null || in.isEmpty()) return "";
 
         StringBuilder result = new StringBuilder();
         int nbChars; // Nombre de caractères à ajouter
@@ -117,10 +122,12 @@ public class Algo {
      * @throws AlgoException Si une erreur survient lors de la décompression.
      */
     public static String unRLE(String in, int iteration) throws AlgoException {
-        // Vérification de l'argument
+        // Vérification des arguments
         if (iteration < 0) {
             throw new IllegalArgumentException("Le nombre d'itérations doit être non négatif.");
         }
+
+        if (in == null || in.isEmpty()) return "";
 
         String result = in;
         // Effectue la décompression RLE plusieurs fois
@@ -129,4 +136,5 @@ public class Algo {
         }
         return result;
     }
+
 }
