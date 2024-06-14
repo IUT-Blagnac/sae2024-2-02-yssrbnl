@@ -85,6 +85,7 @@ public class AlgoSimpleLisible {
      *
      * @param in La chaîne à décompresser.
      * @return La chaîne décompressée.
+     * @throws AlgoException Si une erreur survient lors de la compression.
      */
     public static String unRLE(String in) {
         // Vérifie si la chaîne d'entrée est nulle ou vide
