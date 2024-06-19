@@ -3,57 +3,50 @@ package iut.sae.algo;
 public class Algo {
 
     public static String RLE(String in) {
-        StringBuilder rle = new StringBuilder();
-        int compteur = 1;
-        int TailleIn=in.length();
-        for (int i = 0; i < TailleIn; i++) {
-            if (i+1 < TailleIn && in.charAt(i) == in.charAt(i+1) && compteur!=9) {
-                compteur++;
+        StringBuilder out = new StringBuilder("");
+        int nbrLettres = 1;
+        int taille = in.length();
+        for (int i = 0; i < taille; i++) {
+            if (i == taille - 1) {
+                out.append(nbrLettres).append(in.charAt(i));
+            } else if (in.charAt(i) != in.charAt(i + 1) || nbrLettres == 9) {
+                out.append(nbrLettres).append(in.charAt(i));
+                nbrLettres = 1;
             } else {
-                rle.append(compteur).append(in.charAt(i));
-                compteur = 1;
+                nbrLettres++;
             }
         }
-        return rle.toString();
+        return out.toString();
     }
 
-
-
-
-    public static String RLE(String in, int iteration) throws AlgoException{
-        String resultat=in;
-        for(int i=0;i<iteration;i++){
-            resultat=RLE(resultat);
+    public static String RLE(String in, int iteration) {
+        if (iteration <= 1) {
+            return RLE(in);
+        } else {
+            return RLE(RLE(in, iteration - 1));
         }
-
-        return resultat;
     }
 
-    public static String unRLE(String in) throws AlgoException {
-        StringBuilder resultat = new StringBuilder();
-        int tailleIn = in.length();
-        int nbBoucle;
-        for (int i = 0; i < tailleIn; i++) {
-            nbBoucle = in.charAt(i) - '0';//Transforme un caractère en entier.
-            i++;
-            char caractere = in.charAt(i);//Récupère le caractère à l'indice i de la chaîne de caractères.
-            for (int j = 0; j < nbBoucle; j++) {
-                resultat.append(caractere);
+    public static String unRLE(String in) {
+        StringBuilder out = new StringBuilder();
+        int taille = in.length();
+        for (int i = 0; i < taille; i += 2) {
+            char c = in.charAt(i + 1);
+            int nbrLettres = Character.getNumericValue(in.charAt(i));
+            for (int j = 0; j < nbrLettres; j++) {
+                out.append(c);
             }
         }
-
-        return resultat.toString();
+        return out.toString();
     }
 
-    public static String unRLE(String in, int iteration) throws AlgoException{
-        String resultat=in;
-        for(int i=0;i<iteration;i++){
-            resultat=unRLE(resultat);
+    public static String unRLE(String in, int iteration) {
+        if (iteration <= 1) {
+            return unRLE(in);
+        } else {
+            return unRLE(unRLE(in, iteration - 1));
         }
-        return resultat;
-
     }
-
 
 
 }
