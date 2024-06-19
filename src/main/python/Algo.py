@@ -1,0 +1,140 @@
+import unittest
+
+class N12sobriete:
+
+    @staticmethod
+    def RLE(chaine_de_caractere):
+        if len(chaine_de_caractere) == 0:
+            return ""
+
+        resultat = ""
+        compteur = 1
+        premier_caractere = chaine_de_caractere[0]
+        longueur = len(chaine_de_caractere)
+
+        for i in range(1, longueur):
+            if chaine_de_caractere[i] == premier_caractere:
+                compteur += 1
+                if compteur == 9:
+                    resultat += str(compteur) + premier_caractere
+                    compteur = 0
+            else:
+                if compteur > 0:
+                    resultat += str(compteur) + premier_caractere
+                premier_caractere = chaine_de_caractere[i]
+                compteur = 1
+
+        if compteur > 0:
+            resultat += str(compteur) + premier_caractere
+
+        return resultat
+
+    @staticmethod
+    def unRLE(chaine_compressee):
+        resultat = ""
+        i = 0
+        longueur = len(chaine_compressee)
+
+        while i < longueur:
+            caractere = chaine_compressee[i]
+
+            if caractere.isdigit():
+                nombre = int(caractere)
+                caractere_suivant = chaine_compressee[i + 1]
+                resultat += nombre * caractere_suivant
+                i += 2
+            else:
+                resultat += caractere
+                i += 1
+
+        return resultat
+    
+    @staticmethod
+    def unRLE_Recursif(chaineCompressee, iteration):
+        resultat = chaineCompressee
+        for i in range(iteration):
+            resultat = N12sobriete.unRLE(resultat)
+        return resultat
+    
+    @staticmethod
+    def RLE_Recursif(chaine_de_caractere, iteration):
+        resultat = chaine_de_caractere
+        for i in range(iteration):
+            resultat = N12sobriete.RLE(resultat)
+        return resultat
+
+
+
+class N12sobrieteTest(unittest.TestCase):
+
+    def test_efficacite(self):
+        self.assertEqual(N12sobriete.RLE(""), "")
+        self.assertEqual(N12sobriete.RLE("abc"), "1a1b1c")
+        self.assertEqual(N12sobriete.RLE("abbccc"), "1a2b3c")
+        self.assertEqual(N12sobriete.RLE("aaabaa"), "3a1b2a")
+        self.assertEqual(N12sobriete.RLE("aAa"), "1a1A1a")
+        self.assertEqual(N12sobriete.RLE("WWWWWWWWWWWWW"), "9W4W")
+
+    def test_RLERecursif(self):
+        self.assertEqual(N12sobriete.RLE_Recursif("", 1), "")
+        self.assertEqual(N12sobriete.RLE_Recursif("", 3), "")
+        self.assertEqual(N12sobriete.RLE_Recursif("abc", 1), "1a1b1c")
+        self.assertEqual(N12sobriete.RLE_Recursif("abbccc", 1), "1a2b3c")
+        self.assertEqual(N12sobriete.RLE_Recursif("aaabaa", 1), "3a1b2a")
+        self.assertEqual(N12sobriete.RLE_Recursif("aAa", 1), "1a1A1a")
+        self.assertEqual(N12sobriete.RLE_Recursif("abc", 2), "111a111b111c")
+        self.assertEqual(N12sobriete.RLE_Recursif("abc", 3), "311a311b311c")
+
+        saeIte20 = "1113122113121113222123211211131211121311121321123113213221121113122123211211131221121311121312211213211321322112311311222113311213212322211211131221131211221321123113213221121113122113121113222112131112131221121321131211132221121321132132211331121321232221123113112221131112311322311211131122211213211331121321122112133221121113122113121113222123112221221321132132211231131122211331121321232221121113122113121113222123113221231231121113213221231221132221222112112322211S1113122113121113222123211211131211121311121321123113213221121113122123211211131221121311121312211213211321322112311311222113311213212322211211131221131211221321123113213221121113122113121113222112131112131221121321131211132221121321132132211331121321232221123113112221131112311322311211131122211213211331121321122112133221121113122113121113222123112221221321132132211231131122211331121321232221121113122113121113222123113221231231121113213221231221132221222112112322211A1113122113121113222123211211131211121311121321123113213221121113122123211211131221121311121312211213211321322112311311222113311213212322211211131221131211221321123113213221121113122113121113222112131112131221121321131211132221121321132132211331121321232221123113112221131112311322311211131122211213211331121321122112133221121113122113121113222123112221221321132132211231131122211331121321232221121113122113121113222123113221231231121113213221231221132221222112112322211E1113122113121113222123211211131211121311121321123113213221121113122123211211131221121311121312211213211321322112311311222113311213212322211211131221131211221321123113213221121113122113121113222112131112131221121321131211132221121321132132211331121321232221123113112221131112311322311211131122211213211331121321122112133221121113122113121113222123112221221321132132211231131122211331121321232221121113122113121113222123113221231231121113213221231221132221222112112322211 1113122113121113222123211211131211121311121321123113213221121113122123211211131221121311121312211213211321322112311311222113311213212322211211131221131211221321123113213221121113122113121113222112131112131221121321131211132221121321132132211331121321232221123113112221131112311322311211131122211213211331121321122112133221121113122113121113222123112221221321132132211231131122211331121321232221121113122113121113222123113221231231121113213221231221132221222112112322211A1113122113121113222123211211131211121311121321123113213221121113122123211211131221121311121312211213211321322112311311222113311213212322211211131221131211221321123113213221121113122113121113222112131112131221121321131211132221121321132132211331121321232221123113112221131112311322311211131122211213211331121321122112133221121113122113121113222123112221221321132132211231131122211331121321232221121113122113121113222123113221231231121113213221231221132221222112112322211l1113122113121113222123211211131211121311121321123113213221121113122123211211131221121311121312211213211321322112311311222113311213212322211211131221131211221321123113213221121113122113121113222112131112131221121321131211132221121321132132211331121321232221123113112221131112311322311211131122211213211331121321122112133221121113122113121113222123112221221321132132211231131122211331121321232221121113122113121113222123113221231231121113213221231221132221222112112322211g1113122113121113222123211211131211121311121321123113213221121113122123211211131221121311121312211213211321322112311311222113311213212322211211131221131211221321123113213221121113122113121113222112131112131221121321131211132221121321132132211331121321232221123113112221131112311322311211131122211213211331121321122112133221121113122113121113222123112221221321132132211231131122211331121321232221121113122113121113222123113221231231121113213221231221132221222112112322211o"
+        self.assertEqual(N12sobriete.RLE_Recursif("SAE Algo", 20), saeIte20)
+
+    def test_unRLE_simple(self):
+        self.assertEqual(N12sobriete.unRLE(""), "")
+        self.assertEqual(N12sobriete.unRLE("1a1b1c"), "abc")
+        self.assertEqual(N12sobriete.unRLE("1a2b3c"), "abbccc")
+        self.assertEqual(N12sobriete.unRLE("3a1b2a"), "aaabaa")
+        self.assertEqual(N12sobriete.unRLE("1a1A1a"), "aAa")
+        self.assertEqual(N12sobriete.unRLE("9W4W"), "WWWWWWWWWWWWW")
+
+    def test_unRLERecursif(self):
+        self.assertEqual(N12sobriete.unRLE_Recursif("", 1), "")
+        self.assertEqual(N12sobriete.unRLE_Recursif("", 3), "")
+        self.assertEqual(N12sobriete.unRLE_Recursif("1a1b1c", 1), "abc")
+        self.assertEqual(N12sobriete.unRLE_Recursif("1a2b3c", 1), "abbccc")
+        self.assertEqual(N12sobriete.unRLE_Recursif("3a1b2a", 1), "aaabaa")
+        self.assertEqual(N12sobriete.unRLE_Recursif("1a1A1a", 1), "aAa")
+        self.assertEqual(N12sobriete.unRLE_Recursif("111a111b111c", 2), "abc")
+        self.assertEqual(N12sobriete.unRLE_Recursif("311a311b311c", 3), "abc")
+
+    def test_RLEWithSpecialCharacters(self):
+        self.assertEqual(N12sobriete.RLE("!@#$"), "1!1@1#1$")
+        self.assertEqual(N12sobriete.RLE("a!b@c#"), "1a1!1b1@1c1#")
+
+    def test_RLEWithNumbers(self):
+        self.assertEqual(
+            N12sobriete.RLE("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"),
+            "1a1b1c1d1e1f1g1h1i1j1k1l1m1n1o1p1q1r1s1t1u1v1w1x1y1z1A1B1C1D1E1F1G1H1I1J1K1L1M1N1O1P1Q1R1S1T1U1V1W1X1Y1Z"
+        )
+
+    def test_unRLEWithSpecialCharacters(self):
+        self.assertEqual(N12sobriete.unRLE("1!1@1#1$"), "!@#$")
+        self.assertEqual(N12sobriete.unRLE("1a1!1b1@1c1#"), "a!b@c#")
+
+    def test_unRLEWithNumbers(self):
+        self.assertEqual(
+            N12sobriete.unRLE("1a1b1c1d1e1f1g1h1i1j1k1l1m1n1o1p1q1r1s1t1u1v1w1x1y1z1A1B1C1D1E1F1G1H1I1J1K1L1M1N1O1P1Q1R1S1T1U1V1W1X1Y1Z"),
+            "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        )
+
+    def test_RLEWithLongStrings(self):
+        longString = "a" * 1000
+        expectedRLE = "9a" * 111 + "1a"
+        self.assertEqual(N12sobriete.RLE(longString), expectedRLE)
+
+    def test_unRLEWithLongStrings(self):
+        expectedString = "a" * 1000
+        longRLE = "9a" * 111 + "1a"
+        self.assertEqual(N12sobriete.unRLE(longRLE), expectedString)
+
+if __name__ == "__main__":
+    unittest.main()

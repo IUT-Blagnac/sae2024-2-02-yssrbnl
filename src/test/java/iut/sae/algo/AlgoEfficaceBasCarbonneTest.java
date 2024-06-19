@@ -1,52 +1,47 @@
 package iut.sae.algo;
 
-import org.junit.Test;
 import junit.framework.TestCase;
+import org.junit.Test;
 
+public class AlgoEfficaceBasCarbonneTest extends TestCase {
 
-public class AlgoEfficaceBasCarbonneTest extends TestCase{
-
-/*
- * RLE("")=""
- * RLE("abc")="1a1b1c"
- * RLE("abbccc")="1a2b3c"
- * RLE("aaabaa")="3a1b2a"
- * RLE("aAa")="1a1A1a"
- */
+   /*
+    * RLE("")=""
+    * RLE("abc")="1a1b1c"
+    * RLE("abbccc")="1a2b3c"
+    * RLE("aaabaa")="3a1b2a"
+    * RLE("aAa")="1a1A1a"
+    */
    @Test
-   public void testRLE(){
-
-      assertEquals("", AlgoEfficaceBasCarbonne.RLE("") );
-      
+   public void testRLE() {
+      assertEquals("", AlgoEfficaceBasCarbonne.RLE(""));
       assertEquals("1a1b1c", AlgoEfficaceBasCarbonne.RLE("abc"));
       assertEquals("1a2b3c", AlgoEfficaceBasCarbonne.RLE("abbccc"));
       assertEquals("3a1b2a", AlgoEfficaceBasCarbonne.RLE("aaabaa"));
       assertEquals("1a1A1a", AlgoEfficaceBasCarbonne.RLE("aAa"));
       assertEquals("9W4W", AlgoEfficaceBasCarbonne.RLE("WWWWWWWWWWWWW"));
-
    }
 
-
    /*
-   * RLE(str, 1)=RLE(str)
-   * RLE(str, 3)=RLE(RLE(RLE(str)))
-   */
+    * RLE(str, 1)=RLE(str)
+    * RLE(str, 3)=RLE(RLE(RLE(str)))
+    */
    @Test
    public void testRLERecursif(){
       try{
-         assertEquals("", AlgoEfficaceBasCarbonne.RLE("", 1));
-         assertEquals("", AlgoEfficaceBasCarbonne.RLE("", 3));
-         
-         assertEquals("1a1b1c", AlgoEfficaceBasCarbonne.RLE("abc", 1));
-         assertEquals("1a2b3c", AlgoEfficaceBasCarbonne.RLE("abbccc", 1));
-         assertEquals("3a1b2a", AlgoEfficaceBasCarbonne.RLE("aaabaa", 1));
-         assertEquals("1a1A1a", AlgoEfficaceBasCarbonne.RLE("aAa", 1));
+         assertEquals("", Algo.RLE("", 1));
+         assertEquals("", Algo.RLE("", 3));
 
-         assertEquals("111a111b111c", (AlgoEfficaceBasCarbonne.RLE("abc", 2)));
-         assertEquals("311a311b311c", (AlgoEfficaceBasCarbonne.RLE("abc", 3)));
+         assertEquals("1a1b1c", Algo.RLE("abc", 1));
+         assertEquals("1a2b3c", Algo.RLE("abbccc", 1));
+         assertEquals("3a1b2a", Algo.RLE("aaabaa", 1));
+         assertEquals("1a1A1a", Algo.RLE("aAa", 1));
+
+         assertEquals("111a111b111c", (Algo.RLE("abc", 2)));
+         assertEquals("311a311b311c", (Algo.RLE("abc", 3)));
 
          String saeIte20="1113122113121113222123211211131211121311121321123113213221121113122123211211131221121311121312211213211321322112311311222113311213212322211211131221131211221321123113213221121113122113121113222112131112131221121321131211132221121321132132211331121321232221123113112221131112311322311211131122211213211331121321122112133221121113122113121113222123112221221321132132211231131122211331121321232221121113122113121113222123113221231231121113213221231221132221222112112322211S1113122113121113222123211211131211121311121321123113213221121113122123211211131221121311121312211213211321322112311311222113311213212322211211131221131211221321123113213221121113122113121113222112131112131221121321131211132221121321132132211331121321232221123113112221131112311322311211131122211213211331121321122112133221121113122113121113222123112221221321132132211231131122211331121321232221121113122113121113222123113221231231121113213221231221132221222112112322211A1113122113121113222123211211131211121311121321123113213221121113122123211211131221121311121312211213211321322112311311222113311213212322211211131221131211221321123113213221121113122113121113222112131112131221121321131211132221121321132132211331121321232221123113112221131112311322311211131122211213211331121321122112133221121113122113121113222123112221221321132132211231131122211331121321232221121113122113121113222123113221231231121113213221231221132221222112112322211E1113122113121113222123211211131211121311121321123113213221121113122123211211131221121311121312211213211321322112311311222113311213212322211211131221131211221321123113213221121113122113121113222112131112131221121321131211132221121321132132211331121321232221123113112221131112311322311211131122211213211331121321122112133221121113122113121113222123112221221321132132211231131122211331121321232221121113122113121113222123113221231231121113213221231221132221222112112322211 1113122113121113222123211211131211121311121321123113213221121113122123211211131221121311121312211213211321322112311311222113311213212322211211131221131211221321123113213221121113122113121113222112131112131221121321131211132221121321132132211331121321232221123113112221131112311322311211131122211213211331121321122112133221121113122113121113222123112221221321132132211231131122211331121321232221121113122113121113222123113221231231121113213221231221132221222112112322211A1113122113121113222123211211131211121311121321123113213221121113122123211211131221121311121312211213211321322112311311222113311213212322211211131221131211221321123113213221121113122113121113222112131112131221121321131211132221121321132132211331121321232221123113112221131112311322311211131122211213211331121321122112133221121113122113121113222123112221221321132132211231131122211331121321232221121113122113121113222123113221231231121113213221231221132221222112112322211l1113122113121113222123211211131211121311121321123113213221121113122123211211131221121311121312211213211321322112311311222113311213212322211211131221131211221321123113213221121113122113121113222112131112131221121321131211132221121321132132211331121321232221123113112221131112311322311211131122211213211331121321122112133221121113122113121113222123112221221321132132211231131122211331121321232221121113122113121113222123113221231231121113213221231221132221222112112322211g1113122113121113222123211211131211121311121321123113213221121113122123211211131221121311121312211213211321322112311311222113311213212322211211131221131211221321123113213221121113122113121113222112131112131221121321131211132221121321132132211331121321232221123113112221131112311322311211131122211213211331121321122112133221121113122113121113222123112221221321132132211231131122211331121321232221121113122113121113222123113221231231121113213221231221132221222112112322211o";
-         assertEquals(saeIte20, AlgoEfficaceBasCarbonne.RLE("SAE Algo", 20));
+         assertEquals(saeIte20, Algo.RLE("SAE Algo", 20));
       }
       catch(Exception e){
          fail("Exception inatendue");
@@ -54,47 +49,85 @@ public class AlgoEfficaceBasCarbonneTest extends TestCase{
    }
 
    /*
-  * unRLE(RLE(str))=str
-  *
-  * unRLE("")=""
-  * unRLE("1a1b1c")="abc"
-  * unRLE("1a2b3c")="abbccc"
-  * unRLE("3a1b2a")="aaabaa"
-  * unRLE("1a1A1a")="aAa"
-  */
-
+    * unRLE(RLE(str))=str
+    *
+    * unRLE("")=""
+    * unRLE("1a1b1c")="abc"
+    * unRLE("1a2b3c")="abbccc"
+    * unRLE("3a1b2a")="aaabaa"
+    * unRLE("1a1A1a")="aAa"
+    */
    @Test
-   public void testUnRLE(){
-      try{
+   public void testUnRLE() {
+      try {
          assertEquals("", AlgoEfficaceBasCarbonne.unRLE(""));
          assertEquals("abc", AlgoEfficaceBasCarbonne.unRLE("1a1b1c"));
          assertEquals("abbccc", AlgoEfficaceBasCarbonne.unRLE("1a2b3c"));
          assertEquals("aaabaa", AlgoEfficaceBasCarbonne.unRLE("3a1b2a"));
          assertEquals("aAa", AlgoEfficaceBasCarbonne.unRLE("1a1A1a"));
          assertEquals("WWWWWWWWWWWWW", AlgoEfficaceBasCarbonne.unRLE("9W4W"));
-      }
-      catch(Exception e){
-         fail("Exception inatendue");
+      } catch (Exception e) {
+         fail("Exception inattendue");
       }
    }
-   
+
    @Test
-   public void testUnRLERecursif(){
-      try{
+   public void testUnRLERecursif() {
+      try {
          assertEquals("", AlgoEfficaceBasCarbonne.unRLE("", 1));
          assertEquals("", AlgoEfficaceBasCarbonne.unRLE("", 3));
-         
+
          assertEquals("abc", AlgoEfficaceBasCarbonne.unRLE("1a1b1c", 1));
          assertEquals("abbccc", AlgoEfficaceBasCarbonne.unRLE("1a2b3c", 1));
          assertEquals("aaabaa", AlgoEfficaceBasCarbonne.unRLE("3a1b2a", 1));
          assertEquals("aAa", AlgoEfficaceBasCarbonne.unRLE("1a1A1a", 1));
 
-         assertEquals("abc", (AlgoEfficaceBasCarbonne.unRLE("111a111b111c", 2)));
-         assertEquals("abc", (AlgoEfficaceBasCarbonne.unRLE("311a311b311c", 3)));
+         assertEquals("abc", AlgoEfficaceBasCarbonne.unRLE("111a111b111c", 2));
+         assertEquals("abc", AlgoEfficaceBasCarbonne.unRLE("311a311b311c", 3));
+      } catch (Exception e) {
+         fail("Exception inattendue");
       }
-      catch(Exception e){
-         fail("Exception inatendue");
-      }
+   }
+
+   /*
+    * Tests supplémentaires
+    */
+   @Test
+   public void testRLEWithSpecialCharacters() {
+      assertEquals("1!1@1#1$", AlgoEfficaceBasCarbonne.RLE("!@#$"));
+      assertEquals("1a1!1b1@1c1#", AlgoEfficaceBasCarbonne.RLE("a!b@c#"));
+   }
+
+   @Test
+   public void testRLEWithNumbers() {
+      assertEquals("1a1b1c1d1e1f1g1h1i1j1k1l1m1n1o1p1q1r1s1t1u1v1w1x1y1z1A1B1C1D1E1F1G1H1I1J1K1L1M1N1O1P1Q1R1S1T1U1V1W1X1Y1Z",
+              AlgoEfficaceBasCarbonne.RLE("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"));
+   }
+
+   @Test
+   public void testUnRLEWithSpecialCharacters() throws AlgoException {
+      assertEquals("!@#$", AlgoEfficaceBasCarbonne.unRLE("1!1@1#1$"));
+      assertEquals("a!b@c#", AlgoEfficaceBasCarbonne.unRLE("1a1!1b1@1c1#"));
+   }
+
+   @Test
+   public void testUnRLEWithNumbers() throws AlgoException {
+      assertEquals("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+              AlgoEfficaceBasCarbonne.unRLE("1a1b1c1d1e1f1g1h1i1j1k1l1m1n1o1p1q1r1s1t1u1v1w1x1y1z1A1B1C1D1E1F1G1H1I1J1K1L1M1N1O1P1Q1R1S1T1U1V1W1X1Y1Z"));
+   }
+
+   @Test
+   public void testRLEWithLongStrings() {
+      String longString = new String(new char[1000]).replace("\0", "a");
+      String expectedRLE = new String(new char[111]).replace("\0", "9a") + "1a";
+      assertEquals(expectedRLE, AlgoEfficaceBasCarbonne.RLE(longString));
+   }
+
+   @Test
+   public void testUnRLEWithLongStrings() throws AlgoException {
+      String expectedString = new String(new char[1000]).replace("\0", "a");
+      String longRLE = new String(new char[111]).replace("\0", "9a") + "1a";
+      assertEquals(expectedString, AlgoEfficaceBasCarbonne.unRLE(longRLE));
    }
 
 }
