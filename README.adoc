@@ -162,14 +162,13 @@ Vous utiliserez le dépôt initial qui vous aura été attribué via classroom p
 
 === Phase 1 (deadline : **vendredi 14 juin 2024** à minuit)
 
-* [ ] Votre ou vos algorithmes en précisant les éléments du tableau ci-dessous :
+* [x] Votre ou vos algorithmes en précisant les éléments du tableau ci-dessous :
 
 [options="header"]
 |==========================================================================
 | #    | lien                                                     | langage  | catégorie 
-| 1    | link:src/main/java/exercice/Exercice1.java[meilleur java]| Java     | Simplicité
-| 2    | link:src/main/java/exercice/Exercice2.java[meilleur C]    | C     | Efficacité
-| ...  | ...                                                      | ...      | ...      
+| 1    | link:src/main/java/iut/sae/algo/AlgoSimpleEtLisible.java[simple java]| Java     | Simplicité
+| 2    | link:src/main/java/iut/sae/algo/AlgoEfficaceBasCarbonne.java[effiicace & sobre java]    | C     | Efficacité
 |==========================================================================
 
 === Phase 2 (deadline : **vendredi 21 juin 2024** à minuit)
@@ -183,22 +182,25 @@ WARNING: Les répertoires et fichiers existants devront être complétés et mis
 
 === Pré-requis
 
-Voici les pré-requis pour exécuter nos codes d'évaluation.
+Voici les pré-requis pour exécuter mes codes d'évaluation.
 
-- Java v.x.y.z
-- ...
+- Un IDE (IntelliJ ou Vscode par ex.)
+- Java v.21.0.3
+
 
 === Reproductibilité
 
-- Pour reproduire nos analyses :
-. Installez X
-. Lancez Y
-. ...
+- Pour reproduire mes analyses :
+- Utilisez les trois fichiers `Algo.java`, `SobrieteAlgorithme.java` et `EfficaciteAlgorithme.java`.
+- `Algo.java` va contenir l'algorithme à tester, vous modifierez donc son contenu au fur et a mesure du temps si vous voulez faire des tests sur différents algos.
+- `SobrieteAlgorithme.java` utilise `Algo.java` pour donner des informations sur la consommation système du CPU (le temps que le CPU est utilisé pour faire les calculs de l'algo) et l'utilisation de mémoire, ces mesures sont données pour chaque méthode de l'algo et l'addition de toutes les mesures des méthodes de l'algo est affichée à la fin soit la mesure totale qui sera prise en compte pour départager les différents algos.
+- `EfficaciteAlgorithme.java` utilise `Algo.java` pour donner le temps d'éxecution des différentes méthodes de l'algorithme et également le tempts total d'éxecution de l'algorithme qui sera la mesure retenue pour départager les algorithmes en terme d'éfficacité
+
+Il suffit donc de lancer `EfficaciteAlgorithme.java` ou `SobrieteAlgorithme.java` en fonction de la mesure que vous souhaitez obtenir avec `Algo.java` qui contiendra l'algorithme que vous testez actuellement et dont vous aurez les mesures.
 
 === Références
 
-- link:http://xyz[Mon super outil XYZ]
-- ...
+- link:https://codacy.com[Codacy] m'a permis de départager les différents algorithmes pour la catégorie simplicité
 
 == Généralités, notation de la SAÉ et résultat du concours
 

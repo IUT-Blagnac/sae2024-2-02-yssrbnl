@@ -1,0 +1,42 @@
+:toc: preamble
+:toc-title: Table des Matières
+:toclevels: 4
+:img: ../media/
+:docTech: {img}DocTech/
+
+= Rapport Saé Exploration algorithmique d'un problème
+
+
+image:{img}image_univ.jpg[image,width=97,height=137]
+
+Université de Toulouse
+
+IUT de Blagnac
+
+Département Informatique
+
+SAE 2.02
+
+image:{img}img_algo.jpg[image,width=565,height=374]
+
+____
+*_Nom : BOULOUIHA GNAOUI Yassir
+Clara_*
+____
+
+_Informatique 1^ière^ Année_
+
+Version 1.0
+
+A destination de Jean-Michel Bruel
+
+
+== 1 Présentation des outils d'évaluation
+
+== 2 Classement des algorithmes
+
+=== 2.1 Efficacité
+
+=== 2.2 Sobrieté
+
+=== 2.3 Simplicité
