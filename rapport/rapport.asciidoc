@@ -110,3 +110,13 @@ Malgré le fait que `25sobriete.java` consomme pas mal de mémoire par rapport a
 | 3    | 22simplicite.java   | 7/10
 | 4    | 17simplicite.java    | 6.5/10
 |==========================================================================
+
+== 3 Reproduire mes analyses
+
+- Pour reproduire mes analyses :
+- Utilisez les trois fichiers `Algo.java`, `SobrieteAlgorithme.java` et `EfficaciteAlgorithme.java` dans le dossier `analyse`.
+- `Algo.java` va contenir l'algorithme à tester, vous modifierez donc son contenu au fur et a mesure du temps si vous voulez faire des tests sur différents algos.
+- `SobrieteAlgorithme.java` utilise `Algo.java` pour donner des informations sur la consommation système du CPU (le temps que le CPU est utilisé pour faire les calculs de l'algo) et l'utilisation de mémoire, ces mesures sont données pour chaque méthode de l'algo et l'addition de toutes les mesures des méthodes de l'algo est affichée à la fin soit la mesure totale qui sera prise en compte pour départager les différents algos.
+- `EfficaciteAlgorithme.java` utilise `Algo.java` pour donner le temps d'éxecution des différentes méthodes de l'algorithme et également le tempts total d'éxecution de l'algorithme qui sera la mesure retenue pour départager les algorithmes en terme d'éfficacité
+
+Il suffit donc de lancer `EfficaciteAlgorithme.java` ou `SobrieteAlgorithme.java` en fonction de la mesure que vous souhaitez obtenir avec `Algo.java` qui contiendra l'algorithme que vous testez actuellement et dont vous aurez les mesures.
