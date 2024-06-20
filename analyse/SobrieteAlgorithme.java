@@ -1,4 +1,3 @@
-package iut.sae.algo;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadMXBean;
