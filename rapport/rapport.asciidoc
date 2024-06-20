@@ -30,13 +30,83 @@ Version 1.0
 
 A destination de Jean-Michel Bruel
 
-
+[[partie1]]
 == 1 Présentation des outils d'évaluation
+
+=== 1.1 Efficacité
+
+L'outil principal utilisé pour départager les algorithmes sur l'efficacité ca à été la classe `EfficaciteAlgorithme.java` qui permets de mesurer le temps d'éxecution total d'un algorithme. Ce temps d'éxecution total est en réalité une moyenne de 10 éxecutions qui sont repetées les unes après les autres de l'algorithme, parce que j'ai remarqué que d'une execution à l'autre le temps d'éxecution réel variait un peu, j'ai donc décidé d'éxecuter 10 fois l'algorithme et d'afficher la moyenne de ces 10 éxecutions. De plus le temps d'éxecution retenu par chaque algorithme est la moyenne de 5 éxecutions faites par moi même à la suite, ce qui fait donc une moyenne de 50 éxecutions, ce que je trouve assez élevé pour établir un temps d'éxecution qui relfète l'efficacité réelle de l'algorithme. Tous les détails des executions des différents algorithmes sont dans le fichier link:Algos/Barème%20pour%20noter%20les%20algorithmes.ods[BarèmeAlgos]. 
+
+Voici le tableau répertoriant les données des tests d'efficacité : 
+
+image:{img]tableau_efficacite.png[Tableau Efficacite]
+
+=== 1.2 Sobrieté
+
+Pour la sobriété n'ayant pas réussi à utiliser JoularFX pour mesurer la consommation énergetique des différents algorithmes que j'avais a départager, j'ai choisi de mettre en place la classe `SobrieteAlgorithme.java` qui va mesurer la sobriété selon deux critères, le temps durant lequel le CPU est réellement utilisé (temps CPU système) et la mémoire qui est utilisée pour faire fonctionner l'algorithme. 
+
+A noter que le temps CPU système n'est pas synonyme du temps d'éxecution, un algorithme peut utiliser pendant un court laps de temps les ressources CPU système mais prendre du temps à s'organiser s'éxecuter même après avoir libéré l'utilisation du CPU. Le temps d'utilisation du CPU système permet donc de savoir pendant combien de temps le CPU est alimenté en énergie pour faire fonctionner l'algorithme. La mémoire utilisée est un bon critère d'évaluation pour la sobriété selon moi aussi parce que plus un algorithme utilise d'espace mémoire, plus il utilise d'énergie potentiellement pour écrire récuperer et modifier les informations sur la mémoire utilisée. 
+
+Ces deux critères sont donc mesurés par la classe `EfficaciteAlgorithme.java` dans un premier temps pour chaque méthode de l'algorithme testé (RLE(String in), RLE(String in, int iteration) unRLE(String in) etc...) puis dans un second temps le temps CPU système total est donné en µs et la mémoire totale utilisée en kB, c'est ces deux critères qui sont utilisés pour départager les algorithmes en fonction de leur sobriété. 
+
+J'ai également remarqué pour les mesures de la sobriété que le temps CPU système variait également d'éxecution en éxecution, c'est pourquoi là aussi j'ai effectué une moyenne sur 5 éxecutions à la suite pour définir le temps CPU système d'un algorithme, pour la mémoire utilisée cette mesure avait tendance a beaucoup moins varier entre les différentes éxecutions, cependant je l'ai quand même mesurée finalement en tant que moyenne de 5 éxecutions à la suite aussi. Tous les détails des executions des différents algorithmes sont dans le fichier link:Algos/Barème%20pour%20noter%20les%20algorithmes.ods[BarèmeAlgos]. 
+
+Voici le tableau répertoriant les données des tests d'éfficacité : 
+
+image:{img]tableau_sobriete.png[Tableau Sobriete]
+
+=== 1.3 Simplicité
+
+L'outil utilisé pour départager les algorithmes dans la catégorie simplicité à été link:https://codacy.com[Codacy] cet outil permet en le liant à un répository github (dans mon cas) de donner un retour sur la qualité et la compléxité de la grande majorité du code, je l'ai utilisé principalement pour qu'il mesure la qualité et la complexité du code des différents algorithmes de simplicité que je devais classer.
+
+Voici à quoi ressemble le classement de codacy : 
+
+image:{img}codacy_tab[Capture d'écran Codacy]
+
+L'icone à gauche de chaque fichier représente le grade il va de A à D pour les algorithmes de la catégorie simplicité que j'ai eu à classer. A signifie que le code est d'une très bonne qualité et plus on descends dans les lettres plus cela veut dire que le code est de moins bonne qualité. Ce que j'ai utilisé pour départager les algorithmes et qui est intéressant à noter c'est la colonne `Complexity` sur la droite qui représente un nombre et plus précisément la compléxité cyclomatique, ce qu'il faut retenir c'est qu'un code qui est simple et au faible nombre de complexité cyclomatique est **théoriquement** plus simple a lire, tester et retenir. 
+
+C'est pourquoi j'ai pris en compte la complexité cyclomatique et le grade de qualité du code en plus de mon avis subjectif de compréhension de l'algorithme pour déterminer les notes des différents algorihmes de la catégorie simplicité, cette note est sur 10. Encore une fois tous les détails de ces notes sont dans le fichier link:Algos/Barème%20pour%20noter%20les%20algorithmes.ods[BarèmeAlgos]. 
+
+Voici le tableau répertoriant les notes des algos de la catégorie simplicité : 
+
+image:{img]tableau_simplicite.png[Tableau Simplicite]
 
 == 2 Classement des algorithmes
 
+Les classements ci dessous sont effectués sur la base des tests détaillés présents dans la partie <<partie1, Présentation des outils d'évaluation>>.
+
 === 2.1 Efficacité
+
+|==========================================================================
+| Place    | Algorithme                                                     | Temps d'éxecution retenu  
+| 1    | 21efficacite.java | 1.72ms     
+| 2    | 30efficacite.java    | 1.94ms 
+| 3    | 61efficacite.java    | 2.04ms
+| 4    | 63efficacite.java    | 2.34ms
+| X    | 35efficacite.py    | Hors classement
+| X    | 57efficacite.java    | Hors classement
+|==========================================================================
 
 === 2.2 Sobrieté
 
+|==========================================================================
+| Place    | Algorithme                                                     | Temps CPU retenu | Mémoire utilisée retenue
+| 1    | 58sobriete.java    | 6352,259µs | 894,414kB
+| 2    | 25sobriete.java | 4725,02µs   | 1240,403kB
+| 3    | 66sobriete.java    | 10237,56µs | 871,664kB
+| 4    | 12sobriete.java    | 50699,64µs | 96595,462kB
+|==========================================================================
+
+J'ai presque hésité à mettre `25sobriete.java` et `58sobriete.java` ex aequo cependant vu que 58 sobriete utilise nettement moins de mémoire il prends la place de premier (je considère que la mémoire a un plus gros impact en terme de consommation d'énérgie que le temps d'execution CPU système).
+
+Malgré le fait que `25sobriete.java` consomme pas mal de mémoire par rapport au troixième j'ai choisi de le mettre deuxième parceque c'est celui qui a le moins de temps d'éxecution CPU et que le troixième à le double de temps d'éxecution CPU par rapport au deuxième.
+
 === 2.3 Simplicité
+
+|==========================================================================
+| Place    | Algorithme                                                     | Note 
+| 1    | 36simplicite.java    | 9.5/10
+| 2    | 49simplicite.py | 7.5/10
+| 3    | 22simplicite.java   | 7/10
+| 4    | 17simplicite.java    | 6.5/10
+|==========================================================================
