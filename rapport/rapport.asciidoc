@@ -39,7 +39,7 @@ L'outil principal utilisé pour départager les algorithmes sur l'efficacité ca
 
 Voici le tableau répertoriant les données des tests d'efficacité : 
 
-image:{img]tableau_efficacite.png[Tableau Efficacite]
+image:{img}tableau_efficacite.png[Tableau Efficacite]
 
 === 1.2 Sobrieté
 
@@ -51,9 +51,9 @@ Ces deux critères sont donc mesurés par la classe `EfficaciteAlgorithme.java` 
 
 J'ai également remarqué pour les mesures de la sobriété que le temps CPU système variait également d'éxecution en éxecution, c'est pourquoi là aussi j'ai effectué une moyenne sur 5 éxecutions à la suite pour définir le temps CPU système d'un algorithme, pour la mémoire utilisée cette mesure avait tendance a beaucoup moins varier entre les différentes éxecutions, cependant je l'ai quand même mesurée finalement en tant que moyenne de 5 éxecutions à la suite aussi. Tous les détails des executions des différents algorithmes sont dans le fichier link:Algos/Barème%20pour%20noter%20les%20algorithmes.ods[BarèmeAlgos]. 
 
-Voici le tableau répertoriant les données des tests d'éfficacité : 
+Voici le tableau répertoriant les données des tests de sobriété : 
 
-image:{img]tableau_sobriete.png[Tableau Sobriete]
+image:{img}tableau_sobriete.png[Tableau Sobriete]
 
 === 1.3 Simplicité
 
@@ -61,7 +61,7 @@ L'outil utilisé pour départager les algorithmes dans la catégorie simplicité
 
 Voici à quoi ressemble le classement de codacy : 
 
-image:{img}codacy_tab[Capture d'écran Codacy]
+image:{img}codacy_tab.png[Capture d'écran Codacy]
 
 L'icone à gauche de chaque fichier représente le grade il va de A à D pour les algorithmes de la catégorie simplicité que j'ai eu à classer. A signifie que le code est d'une très bonne qualité et plus on descends dans les lettres plus cela veut dire que le code est de moins bonne qualité. Ce que j'ai utilisé pour départager les algorithmes et qui est intéressant à noter c'est la colonne `Complexity` sur la droite qui représente un nombre et plus précisément la compléxité cyclomatique, ce qu'il faut retenir c'est qu'un code qui est simple et au faible nombre de complexité cyclomatique est **théoriquement** plus simple a lire, tester et retenir. 
 
@@ -69,7 +69,7 @@ C'est pourquoi j'ai pris en compte la complexité cyclomatique et le grade de qu
 
 Voici le tableau répertoriant les notes des algos de la catégorie simplicité : 
 
-image:{img]tableau_simplicite.png[Tableau Simplicite]
+image:{img}tableau_simplicite.png[Tableau Simplicite]
 
 == 2 Classement des algorithmes
 
