@@ -64,7 +64,7 @@ image:{img}codacy_tab.png[Capture d'écran Codacy]
 
 L'icone à gauche de chaque fichier représente le grade il va de A à D pour les algorithmes de la catégorie simplicité que j'ai eu à classer. A signifie que le code est d'une très bonne qualité et plus on descends dans les lettres plus cela veut dire que le code est de moins bonne qualité. Ce que j'ai utilisé pour départager les algorithmes et qui est intéressant à noter c'est la colonne `Complexity` sur la droite qui représente un nombre et plus précisément la compléxité cyclomatique, ce qu'il faut retenir c'est qu'un code qui est simple et au faible nombre de complexité cyclomatique est **théoriquement** plus simple a lire, tester et retenir. 
 
-C'est pourquoi j'ai pris en compte la complexité cyclomatique et le grade de qualité du code en plus de mon avis subjectif de compréhension de l'algorithme pour déterminer les notes des différents algorihmes de la catégorie simplicité, cette note est sur 10. Encore une fois tous les détails de ces notes sont dans le fichier link:Algos/Barème%20pour%20noter%20les%20algorithmes.ods[BarèmeAlgos]. 
+C'est pourquoi j'ai pris en compte la complexité cyclomatique et le grade de qualité du code en plus de mon avis subjectif de compréhension de l'algorithme pour déterminer les notes des différents algorihmes de la catégorie simplicité, cette note est sur 10. Encore une fois tous les détails de ces notes sont dans le fichier link:https://github.com/IUT-Blagnac/sae2024-2-02-yssrbnl/blob/82f4e24d98d8a73fd5837a948d01c2ec3499ca13/Algos/Bare%CC%80me%20pour%20noter%20les%20algorithmes.ods[BarèmeAlgos][BarèmeAlgos]. 
 
 Voici le tableau répertoriant les notes des algos de la catégorie simplicité : 
 
